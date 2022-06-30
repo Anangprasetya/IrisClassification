@@ -6,15 +6,15 @@ from PIL import Image
 model= open("DecisionTreeClassifier.pkl", "rb")
 knn_clf=joblib.load(model)
 
-st.title("Iris flower species Classification App")
+st.title("Machine Learning Klasifikasi Bunga Iris")
 #Loading images
 setosa= Image.open('setosa.png')
 versicolor= Image.open('versicolor.png')
 virginica = Image.open('virginica.png')
 
-st.sidebar.title("Features")
+st.sidebar.title("Masukkan Data")
 #Intializing
-parameter_list=['Sepal length (cm)','Sepal Width (cm)','Petal length (cm)','Petal Width (cm)']
+parameter_list=['Panjang Sepal (cm)','Lebar Sepal (cm)','Panjang Petal (cm)','Lebar Petal (cm)']
 parameter_input_values=[]
 parameter_default_values=['5.2','3.2','4.2','1.2']
 values=[]
@@ -30,7 +30,7 @@ for parameter, parameter_df in zip(parameter_list, parameter_default_values):
 input_variables=pd.DataFrame([parameter_input_values],columns=parameter_list,dtype=float)
 st.write('\n\n')
 
-if st.button("Click Here to Classify"):
+if st.button("Klasifikasi"):
     prediction = knn_clf.predict(input_variables)
     if prediction == 0:
         # print(f'Ini adalah sentosa brooo ============================ 0')
@@ -42,7 +42,11 @@ if st.button("Click Here to Classify"):
         # print(f'ini adalah virginica')
         st.image(virginica)
 
-
+else:
+    st.subheader('Nama Kelompok')
+    st.text("2000018047 - Anang Nur Prasetya")
+    st.text("1900018300 - Gilar Syaikhu Alam")
+    st.text("1900018319 - Alif Akbar")
 
 
 #referensi   : https://towardsdatascience.com/beginners-guide-lets-make-an-interactive-iris-flower-classification-app-using-streamlit-42e1026d2167
